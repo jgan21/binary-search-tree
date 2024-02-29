@@ -27,8 +27,17 @@ function inOrder(node: BNodeNum | null): number[] {
 function inOrderAccum(
     node: BNodeNum | null = null,
     accum: number[] = []): number[] {
-  return [42];
-}
 
+    if (node === null) return [];
+
+    if (node.left) inOrderAccum(node.left, accum);
+
+    // then, do this node
+    accum.push(node.val)
+    // do right last
+    if (node.right) inOrderAccum(node.right, accum);
+
+    return accum;
+}
 
 export { inOrder, inOrderAccum };
