@@ -4,7 +4,17 @@ import { BNodeNum } from "../common/bst";
  * Returns an array of visited nodes. */
 
 function inOrder(node: BNodeNum | null): number[] {
-  return [42];
+  if (node === null) return [];
+  let list: number[] = [];
+
+  if (node.left) list.push(...inOrder(node.left));
+
+  // then, do this node
+  list.push(node.val)
+  // do right last
+  if (node.right) list.push(...inOrder(node.right));
+
+  return list;
 }
 
 
