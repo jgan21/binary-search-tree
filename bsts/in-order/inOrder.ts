@@ -9,9 +9,8 @@ function inOrder(node: BNodeNum | null): number[] {
 
   if (node.left) list.push(...inOrder(node.left));
 
-  // then, do this node
-  list.push(node.val)
-  // do right last
+  list.push(node.val);
+
   if (node.right) list.push(...inOrder(node.right));
 
   return list;
@@ -25,9 +24,16 @@ function inOrder(node: BNodeNum | null): number[] {
  */
 
 function inOrderAccum(
-    node: BNodeNum | null = null,
-    accum: number[] = []): number[] {
-  return [42];
+  node: BNodeNum | null = null,
+  accum: number[] = []): number[] {
+
+  if (node === null) return [];
+  if (node.left) inOrderAccum(node.left, accum);
+
+  accum.push(node.val);
+
+  if (node.right) inOrderAccum(node.right, accum);
+  return accum;
 }
 
 

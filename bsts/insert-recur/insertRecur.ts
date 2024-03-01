@@ -5,37 +5,33 @@ import { BNode, BNodeNum, BSTNum } from "../common/bst";
 
 function insertRecursively(bst: BSTNum, val: number): void {
 
-  function insertRecursivelyNode(node: BNodeNum, val: number): void {
-    const newNode = new BNodeNum(val)
-    let curr = node
+  function _insertRecursivelyNode(node: BNodeNum, val: number): void {
+    const newNode = new BNodeNum(val);
+    let curr = node;
 
     if (curr === null) return;
 
-    if (node.val < val){
+    if (curr.val < val){
       if (curr.right === null) {
-        curr.right = newNode
-        return;
+        curr.right = newNode;
       } else{
-        insertRecursivelyNode(curr.right, val)
+        _insertRecursivelyNode(curr.right, val);
       }
-    } else if (val < node.val){
+    } else {
       if (curr.left === null) {
         curr.left = newNode;
-        return;
       } else {
-        insertRecursivelyNode(curr.left, val)
+        _insertRecursivelyNode(curr.left, val);
       }
     }
-
   }
 
   if (bst.root === null) {
-    bst.root = new BNodeNum(val)
+    bst.root = new BNodeNum(val);
+  } else{
+    let curNode = bst.root;
+    _insertRecursivelyNode(curNode, val);
   }
-
-  let curNode = bst.root;
-
-  insertRecursivelyNode(curNode, val)
 }
 
 
